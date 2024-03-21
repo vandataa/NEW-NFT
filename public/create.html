@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from theme-land.com/netstorm/create.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Mar 2024 16:56:04 GMT -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -13,6 +14,12 @@
     <!-- Title  -->
     <title>NetStorm - NFT Marketplace HTML Template</title>
 
+    <!-- CDN solana -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <!-- CDN base58 -->
+    <script src="https://cdn.jsdelivr.net/npm/base-58@0.0.1/Base58.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js" integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Favicon  -->
     <link rel="icon" href="assets/img/favicon.png">
 
@@ -70,7 +77,7 @@
                     <!-- Navbar -->
                     <ul class="navbar-nav items mx-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="index.html">Home</a>
+<a class="nav-link" href="index.html">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#">Explore <i class="fas fa-angle-down ml-1"></i></a>
@@ -99,7 +106,8 @@
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a href="authors.html" class="nav-link">Authors</a></li>
                                 <li class="nav-item"><a href="author.html" class="nav-link">Author</a></li>
-                                <li class="nav-item"><a href="wallet-connect.html" class="nav-link">Wallet Connect</a></li>
+                                <li class="nav-item"><a href="wallet-connect.html" class="nav-link">Wallet Connect</a>
+                                </li>
                                 <li class="nav-item"><a href="create.html" class="nav-link">Create</a></li>
                                 <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
                                 <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li>
@@ -108,7 +116,7 @@
                         <li class="nav-item">
                             <a href="contact.html" class="nav-link">Contact</a>
                         </li>
-                    </ul>
+</ul>
                     <!-- Navbar Icons -->
                     <ul class="navbar-nav icons">
                         <li class="nav-item">
@@ -130,7 +138,8 @@
                     <!-- Navbar Action Button -->
                     <ul class="navbar-nav action">
                         <li class="nav-item ml-3">
-                            <a href="wallet-connect.html" class="btn ml-lg-auto btn-bordered-white"><i class="icon-wallet mr-md-2"></i>Wallet Connect</a>
+                            <a href="wallet-connect.html" class="btn ml-lg-auto btn-bordered-white"><i
+                                    class="icon-wallet mr-md-2"></i>Wallet Connect</a>
                         </li>
                     </ul>
                 </div>
@@ -170,7 +179,7 @@
                                 <!-- Author -->
                                 <div class="author">
                                     <div class="author-thumb avatar-lg">
-                                        <img class="rounded-circle" src="assets/img/content/avatar_8.jpg" alt="">
+<img class="rounded-circle" src="assets/img/content/avatar_8.jpg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +192,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="ZqpthncaYTsd0579hasfu00st">
                                         <div class="input-group-append">
-                                          <button><i class="icon-docs"></i></button>
+                                            <button><i class="icon-docs"></i></button>
                                         </div>
                                     </div>
                                     <!-- Social Icons -->
@@ -219,34 +228,38 @@
                             </div>
                         </div>
                         <!-- Item Form -->
-                        <form class="item-form card no-hover">
+<form class="item-form card no-hover" onsubmit="mintNft(event)">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="input-group form-group">
                                         <div class="custom-file">
-                                          <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group mt-3">
-                                        <input type="text" class="form-control" name="name" placeholder="Item Name" required="required">
+                                        <input type="text" id="item_name" class="form-control" name="name"
+                                            placeholder="Item Name" required="required">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="textarea" placeholder="Description" cols="30" rows="3"></textarea>
+                                        <textarea class="form-control" id="description" name="textarea"
+                                            placeholder="Description" cols="30" rows="3"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="price" placeholder="Item Price" required="required">
+                                        <input type="text" id="item_price" class="form-control" name="price"
+                                            placeholder="Item Price" required="required">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="royality" placeholder="Royality" required="required">
+                                        <input type="text" class="form-control" name="royalty" placeholder="Royalty"
+                                            required="required">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -256,22 +269,27 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="copies" placeholder="No of Copies" required="required">
+                                        <input type="text" class="form-control" name="copies" placeholder="No of Copies"
+                                            required="required">
                                     </div>
                                 </div>
-                                <div class="col-12">
+<div class="col-12">
                                     <div class="form-group mt-3">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                                            <label class="form-check-label" for="inlineRadio1">Put on Sale</label>
+                                            <input class="form-check-input" type="radio" name="saleType" id="putOnSale"
+                                                value="putOnSale" checked>
+                                            <label class="form-check-label" for="putOnSale">Put on Sale</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                            <label class="form-check-label" for="inlineRadio2">Instant Sale Price</label>
+                                            <input class="form-check-input" type="radio" name="saleType"
+                                                id="instantSale" value="instantSale">
+                                            <label class="form-check-label" for="instantSale">Instant Sale Price</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                            <label class="form-check-label" for="inlineRadio3">Unlock Purchased</label>
+                                            <input class="form-check-input" type="radio" name="saleType"
+                                                id="unlockPurchased" value="unlockPurchased">
+                                            <label class="form-check-label" for="unlockPurchased">Unlock
+                                                Purchased</label>
                                         </div>
                                     </div>
                                 </div>
@@ -280,6 +298,7 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -299,11 +318,12 @@
                                 <a class="navbar-brand" href="index.html">
                                     <img src="assets/img/logo/logo.png" alt="">
                                 </a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis non, fugit totam vel laboriosam vitae.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis non, fugit totam vel
+                                    laboriosam vitae.</p>
                                 <!-- Social Icons -->
                                 <div class="social-icons d-flex">
                                     <a class="facebook" href="#">
-                                        <i class="fab fa-facebook-f"></i>
+<i class="fab fa-facebook-f"></i>
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
                                     <a class="twitter" href="#">
@@ -355,7 +375,7 @@
                                 <!-- Footer Title -->
                                 <h4 class="footer-title">Subscribe Us</h4>
                                 <!-- Subscribe Form -->
-                                <div class="subscribe-form d-flex align-items-center">
+<div class="subscribe-form d-flex align-items-center">
                                     <input type="email" class="form-control" placeholder="info@yourmail.com">
                                     <button type="submit" class="btn"><i class="icon-paper-plane"></i></button>
                                 </div>
@@ -370,11 +390,13 @@
                     <div class="row">
                         <div class="col-12">
                             <!-- Copyright Area -->
-                            <div class="copyright-area d-flex flex-wrap justify-content-center justify-content-sm-between text-center py-4">
+                            <div
+                                class="copyright-area d-flex flex-wrap justify-content-center justify-content-sm-between text-center py-4">
                                 <!-- Copyright Left -->
                                 <div class="copyright-left">&copy;2021 NetStorm, All Rights Reserved.</div>
                                 <!-- Copyright Right -->
-                                <div class="copyright-right">Made with <i class="fas fa-heart"></i> By <a href="#">Themeland</a></div>
+                                <div class="copyright-right">Made with <i class="fas fa-heart"></i> By <a
+                                        href="#">Themeland</a></div>
                             </div>
                         </div>
                     </div>
@@ -408,7 +430,7 @@
                                     <div class="col-12 input-group align-self-center">
                                         <button class="btn btn-bordered-white mt-3">Search</button>
                                     </div>
-                                </div>
+</div>
                             </div>
                         </form>
                     </div>
@@ -464,6 +486,104 @@
     <script src="assets/js/main.js"></script>
 </body>
 
+<script>
+    let publickey;
+    // auto connect 
+    (async () => {
+        await window.phantom.solana.connect();
+        publickey = window.phantom.solana.publicKey.toBase58();
+        console.log(publickey);
+    })();
+
+    const connectWallet = async () => {
+        await window.phantom.solana.connect();
+        publickey = window.phantom.solana.publicKey.toBase58();
+        console.log(publickey);
+    }
+
+    const PRIV_KEY = "UtMsS4FIHYkj4NZ3";
+
+    let attrib = [{"trait_type": "speed", "value": 100},
+{"trait_type": "aggression", "value": "crazy"},
+{"trait_type": "energy", "value": "very high"}];
+
+    const toTransaction = (encodedTransaction) => solanaWeb3.Transaction.from(Uint8Array.from(atob(encodedTransaction), c => c.charCodeAt(0)));
+
+    const mintNft = async (event) => {
+        event.preventDefault();
+
+        var myHeaders = new Headers();
+        myHeaders.append("x-api-key", PRIV_KEY);
+        myHeaders.append("Content-Type", "multipart/form-data")
+
+        const fileInput = document.querySelector("#inputGroupFile01");
+        const itemName = document.querySelector("#item_name").value;
+        const description = document.querySelector("#description").value;
+        const itemPrice = document.querySelector("#item_price").value;
+const royalty = document.querySelector("input[name='royalty']").value;
+        const copies = document.querySelector("input[name='copies']").value;
+        const saleType = document.querySelector("input[name='saleType']:checked").value;
+
+        var formdata = new FormData();
+        formdata.append("network", "devnet");
+        formdata.append("wallet", publickey);
+        formdata.append("name", itemName);
+        formdata.append("item_price", itemPrice);
+        formdata.append("symbol", "FPL");
+        formdata.append("description", description);
+        formdata.append("attributes", JSON.stringify(attrib));
+        formdata.append("external_url", "https://shyft.to");
+        formdata.append("max_supply", "0");
+        formdata.append("copies", copies);
+        formdata.append("saleType", saleType);
+        formdata.append("royalty", royalty);
+        formdata.append("file", fileInput.files[0]);
+
+
+// console.log(formdata.entries());
+// formdata.values().forEach(item => console.log(item)) 
+
+axios({
+	// Endpoint to send files
+	url: "https://api.shyft.to/sol/v1/nft/create_detach",
+	method: "POST",
+	headers: {
+		"Content-Type": "multipart/form-data",
+		"x-api-key": PRIV_KEY,
+		Accept: "*/*",
+		"Access-Control-Allow-Origin": "*",
+	},
+
+	// Attaching the form data
+	data: formdata,
+})
+	// Handle the response from backend here
+	.then(async (res) => {
+		console.log(res);
+		if(res.data.success === true)
+		{
+            console.log(res.data);
+			// setStatus("success: Transaction Created. Signing Transactions. Please Wait.");
+			// const transaction = res.data.result.encoded_transaction; //encoded transaction
+			// setSaveMinted(res.data.result.mint);
+			// const ret_result = await signAndConfirmTransactionFe(network,transaction,callback); //signing the encoded transaction
+    		// 	console.log(ret_result);
+			// setDispResp(res.data);
+			
+		}
+	})
+
+	// Catch errors if any
+	.catch((err) => {
+		console.warn(err);
+		// setStatus("success: false");
+	});
+
+}
+
+</script>
+
 
 <!-- Mirrored from theme-land.com/netstorm/create.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Mar 2024 16:56:04 GMT -->
+
 </html>
