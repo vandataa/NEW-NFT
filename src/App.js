@@ -6,6 +6,7 @@ import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 
 
+
 import './App.css';
 import Create from "./route/Create";
 import Author from "./route/Author";
@@ -24,41 +25,12 @@ function App() {
   const [isLoaded, setLoaded] = useState(false);
   const [dataFetched, setDataFetched] = useState();
   const [connStatus, setConnStatus] = useState(false);
-  const fetchNFTs = (e) => {
-    e.preventDefault();
 
-    //Note, we are not mentioning update_authority here for now
-    let nftUrl = `https://api.shyft.to/sol/v1/nft/read_all?network=${network}&address=${wallID}`;
-    axios({
-      // Endpoint to send files
-      url: nftUrl,
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": xKey,
-      },
-      // Attaching the form data
-    })
-      // Handle the response from backend here
-      .then((res) => {
-        console.log(res.data);
-        setDataFetched(res.data);
-        setLoaded(true);
-      })
-
-      // Catch errors if any
-      .catch((err) => {
-        console.warn(err);
-      });
-  };
   // Phantom Adaptor
-  const solanaConnect = async () => {
-    console.log('clicked solana connect');
-    const { solana } = window;
-    if (!solana) {
-      alert("Please Install Solana");
-    }
-
+  (async () => {
+    let publicKey;
+    await window.phantom.solana.connect();
+    publicKey = window.phantom.solana.publicKey.toBase58();
     try {
       //const network = "devnet";
       const phantom = new PhantomWalletAdapter();
@@ -79,9 +51,13 @@ function App() {
     }
     catch (err) {
       console.log(err);
-    }
 
-  }
+
+    }
+    console.log(publicKey);
+  })();
+
+
   return (
     <div class="main">
       <header id="header">
@@ -153,7 +129,7 @@ function App() {
             <ul class="navbar-nav action">
               <li class="nav-item ml-3">
                 {!connStatus && (
-                  <button class="btn ml-lg-auto btn-bordered-white" className="btn btn-primary px-3" onClick={solanaConnect}><i
+                  <button class="btn ml-lg-auto btn-bordered-white" className="btn btn-primary px-3"><i
                     class="icon-wallet mr-md-2"></i>Wallet Connect</button>
                 )}
                 {connStatus && (
