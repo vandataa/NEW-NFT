@@ -74,7 +74,7 @@ const ListAll = () => {
 
 
     return (
-        <div className="grd-back">
+        <div>
             <section class="hero-section">
                 <div class="container">
                     <div class="row">
@@ -124,9 +124,6 @@ const ListAll = () => {
                     <div class="auctions-slides">
                         <div class="swiper-container slider-mid items">
                             <div class="swiper-wrapper">
-
-
-
                                 <div class="swiper-slide item">
                                     <div class="card">
                                         <div class="image-over">
@@ -295,7 +292,55 @@ const ListAll = () => {
                     </div>
                 </div>
             </section>
-
+            <section class="explore-area p-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="intro d-flex justify-content-between align-items-end m-0">
+                                <div class="intro-content">
+                                    <span>Exclusive Assets</span>
+                                    <h3 class="mt-3 mb-0">Explore</h3>
+                                </div>
+                                <div class="intro-btn">
+                                    <a class="btn content-btn" href="explore-3.html">View All</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row items">
+                        {isLoaded &&
+                            dataFetched.result.map((item) => (
+                                <div class="col-12 col-sm-6 col-lg-3 item" key={item.mint}>
+                                    <div class="card">
+                                        <div class="image-over">
+                                            <a href={`/get-details?token_address=${item.mint}&network=${network}`} target="_blank" rel="noreferrer">
+                                                <img class="card-img-top" src={item.image_uri} alt="img" />
+                                            </a>
+                                        </div>
+                                        <div class="card-caption col-12 p-0">
+                                            <div class="card-body">
+                                                <a href={`/get-details?token_address=${item.mint}&network=${network}`} target="_blank" rel="noreferrer">
+                                                    <h5 class="mb-0">{item.name}</h5>
+                                                </a>
+                                                <div class="seller d-flex align-items-center my-3">
+                                                    <span>Owned By</span>
+                                                    <a href="/">
+                                                        <h6 class="ml-2 mb-0">Richard</h6>
+                                                    </a>
+                                                </div>
+                                                <div class="card-bottom d-flex justify-content-between">
+                                                    <span>1.5 ETH</span>
+                                                    <span>1 of 1</span>
+                                                </div>
+                                                <a class="btn btn-bordered-white btn-smaller mt-3" href="login.html"><i class="icon-handbag mr-2"></i>Place a Bid</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                    </div>
+                </div>
+            </section>
             <section class="top-seller-area p-0">
                 <div class="container">
                     <div class="row">
@@ -587,58 +632,7 @@ const ListAll = () => {
                 </div>
             </section>
 
-            <section class="explore-area p-0">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="intro d-flex justify-content-between align-items-end m-0">
-                                <div class="intro-content">
-                                    <span>Exclusive Assets</span>
-                                    <h3 class="mt-3 mb-0">Explore</h3>
-                                </div>
-                                <div class="intro-btn">
-                                    <a class="btn content-btn" href="explore-3.html">View All</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row items">
-                        {isLoaded &&
-                            dataFetched.result.map((item) => (
-                                <div class="col-12 col-sm-6 col-lg-3 item" key={item.mint}>
-                                    <div class="card">
-                                        <div class="image-over">
-                                            <a href={`/get-details?token_address=${item.mint}&network=${network}`} target="_blank" rel="noreferrer">
-                                                <img class="card-img-top" src={item.image_uri} alt="img" />
-                                            </a>
-                                        </div>
-                                        <div class="card-caption col-12 p-0">
-                                            <div class="card-body">
-                                                <a href={`/get-details?token_address=${item.mint}&network=${network}`} target="_blank" rel="noreferrer">
-                                                    <h5 class="mb-0">{item.name}</h5>
-                                                </a>
-                                                <div class="seller d-flex align-items-center my-3">
-                                                    <span>Owned By</span>
-                                                    <a href="/">
-                                                        <h6 class="ml-2 mb-0">Richard</h6>
-                                                    </a>
-                                                </div>
-                                                <div class="card-bottom d-flex justify-content-between">
-                                                    <span>1.5 ETH</span>
-                                                    <span>1 of 1</span>
-                                                </div>
-                                                <a class="btn btn-bordered-white btn-smaller mt-3" href="login.html"><i class="icon-handbag mr-2"></i>Place a Bid</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
 
-
-                    </div>
-
-                </div>
-            </section>
 
             <section class="work-area">
                 <div class="container">
@@ -685,82 +679,9 @@ const ListAll = () => {
                 </div>
             </section>
 
-            <div className="container-lg">
-                <div className="py-4 text-center">
-                    <h1>List All Your NFTs</h1>
-                    <p>
-                        This is a sample project which will list all your NFTs associated
-                        with your wallet
-                    </p>
-                </div>
-            </div>
 
-            <div className="container-lg">
 
-                <div className="w-50 border border-light rounded-3 mx-auto bg-dark">
-                    <div className="form-container p-3">
-                        <form>
-                            <div className="row d-flex justify-content-center">
 
-                                <div className="col-12 p-2">
-                                    <select
-                                        name="network"
-                                        className="form-control form-select"
-                                        id=""
-                                        onChange={(e) => setNetwork(e.target.value)}
-                                    >
-                                        <option value="devnet">Devnet</option>
-                                        <option value="testnet">Testnet</option>
-                                        <option value="mainnet-beta">Mainnet Beta</option>
-                                    </select>
-                                </div>
-                                <div className="col-12 p-2">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Enter Wallet Id"
-                                        value={wallID}
-                                    />
-                                </div>
-
-                            </div>
-                            <div className="text-center p-3">
-                                <button
-                                    className="button-24"
-
-                                >
-                                    Get
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div className="container-lg">
-                <div className="cards-section py-4">
-                    <div className="row">
-                        {isLoaded &&
-                            dataFetched.result.map((item) => (
-                                <div className="col-xs-12 col-sm-3 p-3" key={item.mint}>
-                                    <div className="card nft-card bg-dark">
-                                        <div className="card-body">
-                                            <a href={`/get-details?token_address=${item.mint}&network=${network}`} target="_blank" rel="noreferrer">
-                                                <img className="card-image img-fluid" src={item.image_uri} alt="img" />
-                                            </a>
-                                            <li>Royalty:{item.royalty}</li>
-                                            <a href={`/get-details?token_address=${item.mint}&network=${network}`} target="_blank" rel="noreferrer">
-                                                <h5>{item.name}</h5>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };
