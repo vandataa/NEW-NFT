@@ -64,34 +64,34 @@ function App() {
         <nav data-aos="zoom-out" data-aos-delay="800"
           class="navbar navbar-expand">
           <div class="container header">
-            <Link class="navbar-brand" to="/">
+            <a class="navbar-brand" href="/">
               <img class="navbar-brand-sticky" src={logo}
                 alt="sticky brand-logo" />
-            </Link>
-            <div class="ml-auto"></div>
-            <ul class="navbar-nav items mx-auto">
+            </a>
+            <div class="ml-auhref"></div>
+            <ul class="navbar-nav items mx-auhref">
               <li class="nav-item dropdown">
-                <Link class="nav-link" to="/">Home</Link>
+                <a class="nav-link" href="/">Home</a>
               </li>
               <li class="nav-item dropdown">
-                <Link class="nav-link" to="/explore">Explore </Link>
+                <a class="nav-link" href="/explore">Explore </a>
                 {/* <i
                     class="fas fa-angle-down ml-1"></i> */}
               </li>
               <li class="nav-item">
-                <Link to="/activity" class="nav-link">Activity</Link>
+                <a href="/activity" class="nav-link">Activity</a>
               </li>
               <li class="nav-item dropdown">
-                <Link class="nav-link" to="/">Community <i
-                  class="fas fa-angle-down ml-1"></i></Link>
+                <a class="nav-link" href="/">Community <i
+                  class="fas fa-angle-down ml-1"></i></a>
 
               </li>
               <li class="nav-item dropdown">
-                <Link class="nav-link" to="/">Pages <i
-                  class="fas fa-angle-down ml-1"></i></Link>
+                <a class="nav-link" href="/">Pages <i
+                  class="fas fa-angle-down ml-1"></i></a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><Link to="authors.html"
-                    class="nav-link">Authors</Link></li>
+                  <li class="nav-item"><a href="authors.html"
+                    class="nav-link">Authors</a></li>
                   <li class="nav-item"><Link to="author.html"
                     class="nav-link">Author</Link></li>
                   <li class="nav-item"><Link to="wallet-connect.html"
@@ -146,7 +146,7 @@ function App() {
         <Route path="/Create" element={<Create />} />
         <Route path="/Author" element={<Author />} />
         <Route path="/Explore" element={<Explore />} />
-        <Route path="/IteamDetail" element={<IteamDetail />} />
+        <Route path="/get-details" element={<IteamDetail />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/activity" element={<Active />} />
 

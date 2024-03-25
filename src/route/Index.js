@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
+import { Link } from "react-router-dom";
 ///we use the devnet for this project, else the view function will not work
 const ListAll = () => {
     let publicKey;
@@ -83,8 +84,8 @@ const ListAll = () => {
                             <h1 class="mt-4">Discover, collect, and sell extraordinary NFTs</h1>
                             <p>Explore on the world's best & largest NFT marketplace</p>
                             <div class="button-group">
-                                <a class="btn btn-bordered-white" href="explore-1.html"><i class="icon-rocket mr-2"></i>Explore</a>
-                                <a class="btn btn-bordered-white" href="create.html"><i class="icon-note mr-2"></i>Create</a>
+                                <a class="btn btn-bordered-white" href="/explore"><i class="icon-rocket mr-2"></i>Explore</a>
+                                <a class="btn btn-bordered-white" href="/Create"><i class="icon-note mr-2"></i>Create</a>
                             </div>
                         </div>
                     </div>
@@ -106,193 +107,8 @@ const ListAll = () => {
                 </div>
             </section>
 
-            <section class="live-auctions-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="intro d-flex justify-content-between align-items-end m-0">
-                                <div class="intro-content">
-                                    <span>Auctions</span>
-                                    <h3 class="mt-3 mb-0">Live Auctions</h3>
-                                </div>
-                                <div class="intro-btn">
-                                    <a class="btn content-btn" href="auctions.html">View All</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="auctions-slides">
-                        <div class="swiper-container slider-mid items">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide item">
-                                    <div class="card">
-                                        <div class="image-over">
-                                            <a href="item-details.html">
-                                                <img class="card-img-top" src="assets/img/content/auction_1.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="card-caption col-12 p-0">
-                                            <div class="card-body">
-                                                <div class="countdown-times mb-3">
-                                                    <div class='countdown d-flex justify-content-center' data-date="2021-12-09"></div>
-                                                </div>
-                                                <a href="item-details.html">
-                                                    <h5 class="mb-0">Virtual Worlds</h5>
-                                                </a>
-                                                <a class="seller d-flex align-items-center my-3" href="item-details.html">
-                                                    <img class="avatar-sm rounded-circle" src="assets/img/content/avatar_1.jpg" alt="" />
-                                                    <span class="ml-2">@Richard</span>
-                                                </a>
-                                                <div class="card-bottom d-flex justify-content-between">
-                                                    <span>1.5 BNB</span>
-                                                    <span>1 of 1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide item">
-                                    <div class="card">
-                                        <div class="image-over">
-                                            <a href="item-details.html">
-                                                <img class="card-img-top" src="assets/img/content/auction_2.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="card-caption col-12 p-0">
-                                            <div class="card-body">
-                                                <div class="countdown-times mb-3">
-                                                    <div class='countdown d-flex justify-content-center' data-date="2021-10-05"></div>
-                                                </div>
-                                                <a href="item-details.html">
-                                                    <h5 class="mb-0">Collectibles</h5>
-                                                </a>
-                                                <a class="seller d-flex align-items-center my-3" href="item-details.html">
-                                                    <img class="avatar-sm rounded-circle" src="assets/img/content/avatar_2.jpg" alt="" />
-                                                    <span class="ml-2">@JohnDeo</span>
-                                                </a>
-                                                <div class="card-bottom d-flex justify-content-between">
-                                                    <span>2.7 BNB</span>
-                                                    <span>1 of 1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide item">
-                                    <div class="card">
-                                        <div class="image-over">
-                                            <a href="item-details.html">
-                                                <img class="card-img-top" src="assets/img/content/auction_3.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="card-caption col-12 p-0">
-                                            <div class="card-body">
-                                                <div class="countdown-times mb-3">
-                                                    <div class='countdown d-flex justify-content-center' data-date="2021-09-15"></div>
-                                                </div>
-                                                <a href="item-details.html">
-                                                    <h5 class="mb-0">Arts</h5>
-                                                </a>
-                                                <a class="seller d-flex align-items-center my-3" href="item-details.html">
-                                                    <img class="avatar-sm rounded-circle" src="assets/img/content/avatar_3.jpg" alt="" />
-                                                    <span class="ml-2">@MKHblots</span>
-                                                </a>
-                                                <div class="card-bottom d-flex justify-content-between">
-                                                    <span>2.3 BNB</span>
-                                                    <span>1 of 1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide item">
-                                    <div class="card">
-                                        <div class="image-over">
-                                            <a href="item-details.html">
-                                                <img class="card-img-top" src="assets/img/content/auction_4.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="card-caption col-12 p-0">
-                                            <div class="card-body">
-                                                <div class="countdown-times mb-3">
-                                                    <div class='countdown d-flex justify-content-center' data-date="2021-12-29"></div>
-                                                </div>
-                                                <a href="item-details.html">
-                                                    <h5 class="mb-0">Robotic Arts</h5>
-                                                </a>
-                                                <a class="seller d-flex align-items-center my-3" href="item-details.html">
-                                                    <img class="avatar-sm rounded-circle" src="assets/img/content/avatar_4.jpg" alt="" />
-                                                    <span class="ml-2">@RioArham</span>
-                                                </a>
-                                                <div class="card-bottom d-flex justify-content-between">
-                                                    <span>1.8 BNB</span>
-                                                    <span>1 of 1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide item">
-                                    <div class="card">
-                                        <div class="image-over">
-                                            <a href="item-details.html">
-                                                <img class="card-img-top" src="assets/img/content/auction_5.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="card-caption col-12 p-0">
-                                            <div class="card-body">
-                                                <div class="countdown-times mb-3">
-                                                    <div class='countdown d-flex justify-content-center' data-date="2022-01-24"></div>
-                                                </div>
-                                                <a href="item-details.html">
-                                                    <h5 class="mb-0">Design Illusions</h5>
-                                                </a>
-                                                <a class="seller d-flex align-items-center my-3" href="item-details.html">
-                                                    <img class="avatar-sm rounded-circle" src="assets/img/content/avatar_5.jpg" alt="" />
-                                                    <span class="ml-2">@ArtNox</span>
-                                                </a>
-                                                <div class="card-bottom d-flex justify-content-between">
-                                                    <span>1.7 BNB</span>
-                                                    <span>1 of 1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide item">
-                                    <div class="card">
-                                        <div class="image-over">
-                                            <a href="item-details.html">
-                                                <img class="card-img-top" src="assets/img/content/auction_6.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="card-caption col-12 p-0">
-                                            <div class="card-body">
-                                                <div class="countdown-times mb-3">
-                                                    <div class='countdown d-flex justify-content-center' data-date="2022-03-30"></div>
-                                                </div>
-                                                <a href="item-details.html">
-                                                    <h5 class="mb-0">Design Illusions</h5>
-                                                </a>
-                                                <a class="seller d-flex align-items-center my-3" href="item-details.html">
-                                                    <img class="avatar-sm rounded-circle" src="assets/img/content/avatar_6.jpg" alt="" />
-                                                    <span class="ml-2">@ArtNox</span>
-                                                </a>
-                                                <div class="card-bottom d-flex justify-content-between">
-                                                    <span>1.7 BNB</span>
-                                                    <span>1 of 1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="explore-area p-0">
+            
+            <section class="explore-area p-0 mt-5">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -319,13 +135,13 @@ const ListAll = () => {
                                         </div>
                                         <div class="card-caption col-12 p-0">
                                             <div class="card-body">
-                                                <a href={`/get-details?token_address=${item.mint}&network=${network}`} target="_blank" rel="noreferrer">
+                                                <Link to={`/get-details?token_address=${item.mint}&network=${network}`} target="_blank" rel="noreferrer">
                                                     <h5 class="mb-0">{item.name}</h5>
-                                                </a>
+                                                </Link>
                                                 <div class="seller d-flex align-items-center my-3">
                                                     <span>Owned By</span>
-                                                    <a href="/">
-                                                        <h6 class="ml-2 mb-0">Richard</h6>
+                                                    <a href="/" class="a-owner">
+                                                        <h6 class="ml-2 mb-0 ">{item.owner}</h6>
                                                     </a>
                                                 </div>
                                                 <div class="card-bottom d-flex justify-content-between">
