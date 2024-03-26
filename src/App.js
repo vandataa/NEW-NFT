@@ -15,6 +15,7 @@ import Explore from "./route/Explore";
 import IteamDetail from "./route/IteamDetail";
 import Contact from "./route/Contact";
 import Active from "./route/Active";
+import MintNFT from "./route/mintNft";
 
 
 function App() {
@@ -149,6 +150,8 @@ function App() {
         <Route path="/get-details" element={<IteamDetail />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/activity" element={<Active />} />
+        <Route path="/mint" element={<MintNFT />} />
+
 
 
 

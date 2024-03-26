@@ -3,6 +3,7 @@ import axios from "axios";
 import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import { Link } from "react-router-dom";
+import { signAndConfirmTransaction } from "../utilityfunc";
 ///we use the devnet for this project, else the view function will not work
 const ListAll = () => {
     let publicKey;
@@ -73,7 +74,78 @@ const ListAll = () => {
         alert("Please Install Solana");
     }
 
-
+    const [sender,setSender] = useState('');
+    const [receiver,setReceiver] = useState('');
+    const [nftAddress,setNftAddress] = useState('');
+    const [auth,setAuth] = useState(false);
+  
+    const [mssg,setMssg] = useState('');
+    const callback = (signature,result) => {
+      console.log("Signature ",signature);
+      console.log("result ",result);
+      
+      try {
+        if(signature.err === null)
+        {
+          setMssg("Minting successful. You can check your wallet");
+        }
+        else
+        {
+          setMssg("Signature Failed");
+          
+        }
+      } catch (error) {
+          setMssg("Signature Failed, but check your wallet");
+      
+      }
+  
+    }
+  
+    const mintNow = () => {
+      console.log("Trying to transfer");
+      let nftUrl = `https://api.shyft.to/sol/v1/nft/mint_detach`;
+  
+        axios({
+          // Endpoint to get NFTs
+          url: nftUrl,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": xKey,
+          },
+          data: {
+            network: network,
+            wallet: sender,
+            master_nft_address: nftAddress,
+            receiver: receiver,
+            transfer_authority: auth
+          }
+        })
+          // Handle the response from backend here
+          .then(async (res) => {
+            console.log(res.data);
+            if(res.data.success === true)
+            {
+              const transaction = res.data.result.encoded_transaction;
+              const ret_result = await signAndConfirmTransaction(network,transaction,callback); //flow from here goes to utility func
+              console.log(ret_result);
+            }
+            else
+            {
+              setMssg("Could not create the transaction request");
+            }
+            
+          })
+          // Catch errors if any
+          .catch((err) => {
+            console.warn(err);
+            setMssg("Failed! Some error occured");
+            
+          });
+  
+    } 
+  
+    
     return (
         <div>
             <section class="hero-section">
@@ -148,7 +220,7 @@ const ListAll = () => {
                                                     <span>1.5 ETH</span>
                                                     <span>1 of 1</span>
                                                 </div>
-                                                <a class="btn btn-bordered-white btn-smaller mt-3" href="login.html"><i class="icon-handbag mr-2"></i>Place a Bid</a>
+                                                <a class="btn btn-bordered-white btn-smaller mt-3" href="/mint"><i class="icon-handbag mr-2"></i>Place a Bid</a>
                                             </div>
                                         </div>
                                     </div>

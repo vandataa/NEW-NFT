@@ -164,7 +164,7 @@ const IteamDetail = () => {
                                         <li class="price d-flex justify-content-between">
                                             <span>Current Price 1.5 ETH</span>
                                             <span>$500.89</span>
-                                            <span>{CurSup} of {CurSup}</span>
+                                            <span>1 of 5</span>
                                         </li>
                                         <li>
                                             <span>Size</span>
