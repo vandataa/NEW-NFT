@@ -32,120 +32,42 @@ const ListAll = () => {
             };
 
             if (wallet.address) {
-                console.log(wallet.address);
                 setWallID(wallet.address);
-                const accountInfo = await connection.getAccountInfo(new PublicKey(wallet.address), "confirmed");
-                console.log(accountInfo);
-                setConnStatus(true);
-                let nftUrl = `https://api.shyft.to/sol/v1/nft/read_all?network=${network}&address=${wallID}`;
-                axios({
-                    // Endpoint to send files
-                    url: nftUrl,
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "x-api-key": xKey,
-                    },
-                    // Attaching the form data
-                })
-                    // Handle the response from backend here
-                    .then((res) => {
-                        console.log(res.data);
-                        setDataFetched(res.data);
-                        setLoaded(true);
-                    })
-
-                    // Catch errors if any
-                    .catch((err) => {
-                        console.warn(err);
-                    });
+                
             }
         }
         catch (err) {
             console.log(err);
-
-
         }
         console.log(publicKey);
     })();
 
-    const { solana } = window;
-    if (!solana) {
-        alert("Please Install Solana");
-    }
-
-    const [sender,setSender] = useState('');
-    const [receiver,setReceiver] = useState('');
-    const [nftAddress,setNftAddress] = useState('');
-    const [auth,setAuth] = useState(false);
-  
-    const [mssg,setMssg] = useState('');
-    const callback = (signature,result) => {
-      console.log("Signature ",signature);
-      console.log("result ",result);
-      
-      try {
-        if(signature.err === null)
-        {
-          setMssg("Minting successful. You can check your wallet");
-        }
-        else
-        {
-          setMssg("Signature Failed");
-          
-        }
-      } catch (error) {
-          setMssg("Signature Failed, but check your wallet");
-      
-      }
-  
-    }
-  
-    const mintNow = () => {
-      console.log("Trying to transfer");
-      let nftUrl = `https://api.shyft.to/sol/v1/nft/mint_detach`;
-  
-        axios({
-          // Endpoint to get NFTs
-          url: nftUrl,
-          method: "POST",
-          headers: {
+    axios({
+        // Endpoint to send files
+        url: `https://api.shyft.to/sol/v1/nft/read_all?network=${network}&address=${wallID}`,
+        method: "GET",
+        headers: {
             "Content-Type": "application/json",
             "x-api-key": xKey,
-          },
-          data: {
-            network: network,
-            wallet: sender,
-            master_nft_address: nftAddress,
-            receiver: receiver,
-            transfer_authority: auth
-          }
-        })
-          // Handle the response from backend here
-          .then(async (res) => {
+        },
+        // Attaching the form data
+    })
+        // Handle the response from backend here
+        .then((res) => {
             console.log(res.data);
-            if(res.data.success === true)
-            {
-              const transaction = res.data.result.encoded_transaction;
-              const ret_result = await signAndConfirmTransaction(network,transaction,callback); //flow from here goes to utility func
-              console.log(ret_result);
-            }
-            else
-            {
-              setMssg("Could not create the transaction request");
-            }
-            
-          })
-          // Catch errors if any
-          .catch((err) => {
+            setDataFetched(res.data);
+            setLoaded(true);
+        })
+
+        // Catch errors if any
+        .catch((err) => {
             console.warn(err);
-            setMssg("Failed! Some error occured");
-            
-          });
-  
-    } 
-  
-    
+        });
+
+
+
+
+
     return (
         <div>
             <section class="hero-section">
@@ -179,7 +101,7 @@ const ListAll = () => {
                 </div>
             </section>
 
-            
+
             <section class="explore-area p-0 mt-5">
                 <div class="container">
                     <div class="row">
@@ -220,7 +142,7 @@ const ListAll = () => {
                                                     <span>1.5 ETH</span>
                                                     <span>1 of 1</span>
                                                 </div>
-                                                <a class="btn btn-bordered-white btn-smaller mt-3" href="/mint"><i class="icon-handbag mr-2"></i>Place a Bid</a>
+                                                <a class="btn btn-bordered-white btn-smaller mt-3" href={`/mint?token_address=${item.mint}&wallet=${wallID}`}><i class="icon-handbag mr-2"></i>Place a Bid</a>
                                             </div>
                                         </div>
                                     </div>

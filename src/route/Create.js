@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { signAndConfirmTransactionFe } from '../utilityfunc';
+import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
+import { Connection, clusterApiUrl } from "@solana/web3.js";
 
 
 function Create() {
@@ -13,12 +15,6 @@ function Create() {
         publickey = window.phantom.solana.publicKey.toBase58();
         console.log(publickey);
     })();
-
-    const connectWallet = async () => {
-        await window.phantom.solana.connect();
-        publickey = window.phantom.solana.publicKey.toBase58();
-        console.log(publickey);
-    }
 
 
     const [file, setfile] = useState();
@@ -111,66 +107,8 @@ function Create() {
             <section class="author-area">
                 <div class="container">
                     <div class="row justify-content-between">
-                        <div class="col-12 col-md-4">
-                            <div class="card no-hover text-center">
-                                <div class="image-over">
-                                    <img class="card-img-top"
-                                        src="assets/img/content/auction_2.jpg"
-                                        alt="" />
-                                    <div class="author">
-                                        <div class="author-thumb avatar-lg">
-                                            <img class="rounded-circle"
-                                                src="assets/img/content/avatar_8.jpg"
-                                                alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-caption col-12 p-0">
-                                    <div class="card-body mt-4">
-                                        <h5 class="mb-3">Artnox</h5>
-                                        <p class="my-3">Lorem ipsum dolor sit
-                                            amet, consectetur adipisicing
-                                            elit.</p>
-                                        <div class="input-group">
-                                            <input type="text"
-                                                class="form-control"
-                                                placeholder={publickey} />
-                                            <div class="input-group-append">
-                                                <button><i
-                                                    class="icon-docs"></i></button>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="social-icons d-flex justify-content-center my-3">
-                                            <a class="facebook" href="/">
-                                                <i
-                                                    class="fab fa-facebook-f"></i>
-                                                <i
-                                                    class="fab fa-facebook-f"></i>
-                                            </a>
-                                            <a class="twitter" href="/">
-                                                <i class="fab fa-twitter"></i>
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                            <a class="google-plus" href="/">
-                                                <i
-                                                    class="fab fa-google-plus-g"></i>
-                                                <i
-                                                    class="fab fa-google-plus-g"></i>
-                                            </a>
-                                            <a class="vine" href="/">
-                                                <i class="fab fa-vine"></i>
-                                                <i class="fab fa-vine"></i>
-                                            </a>
-                                        </div>
-                                        <a
-                                            class="btn btn-bordered-white btn-smaller"
-                                            href="/">Follow</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-7">
+                        
+                        <div class="">
                             <div class="intro mt-5 mt-lg-0 mb-4 mb-lg-5">
                                 <div class="intro-content">
                                     <span>Get Started</span>

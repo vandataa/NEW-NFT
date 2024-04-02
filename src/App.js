@@ -27,11 +27,7 @@ function App() {
   const [dataFetched, setDataFetched] = useState();
   const [connStatus, setConnStatus] = useState(false);
 
-  // Phantom Adaptor
   (async () => {
-    let publicKey;
-    await window.phantom.solana.connect();
-    publicKey = window.phantom.solana.publicKey.toBase58();
     try {
       //const network = "devnet";
       const phantom = new PhantomWalletAdapter();
@@ -52,11 +48,9 @@ function App() {
     }
     catch (err) {
       console.log(err);
-
-
     }
-    console.log(publicKey);
   })();
+
 
 
   return (
@@ -131,7 +125,7 @@ function App() {
               <li class="nav-item ml-3">
                 {!connStatus && (
                   <button class="btn ml-lg-auto btn-bordered-white" className="btn btn-primary px-3"><i
-                    class="icon-wallet mr-md-2"></i>Wallet Connect</button>
+                    class="icon-wallet mr-md-2" ></i>Wallet Connect</button>
                 )}
                 {connStatus && (
                   <button class="btn ml-lg-auto btn-bordered-white wallet"><i

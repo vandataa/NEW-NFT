@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const IteamDetail = () => {
     const xAPIKey = '0Y3eR8m-wYwyoZYS'; //enter your X-API-KEY here 
     const ApiParams = window.location.search.substring(1); //fetching the url params
+    console.log(ApiParams)
     const [image, setimage] = useState('');
     const [name, setName] = useState(null);
     const [desc, setDesc] = useState(null);
