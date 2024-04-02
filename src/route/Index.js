@@ -142,7 +142,7 @@ const ListAll = () => {
                                                     <span>1.5 ETH</span>
                                                     <span>1 of 1</span>
                                                 </div>
-                                                <a class="btn btn-bordered-white btn-smaller mt-3" href={`/mint?token_address=${item.mint}&wallet=${wallID}`}><i class="icon-handbag mr-2"></i>Place a Bid</a>
+                                                <a class="btn btn-bordered-white btn-smaller mt-3" href={`/mint?${item.mint}&${wallID}`}><i class="icon-handbag mr-2"></i>Place a Bid</a>
                                             </div>
                                         </div>
                                     </div>

@@ -29,7 +29,7 @@ function App() {
 
   (async () => {
     try {
-      //const network = "devnet";
+      // const network = "devnet";
       const phantom = new PhantomWalletAdapter();
       await phantom.connect();
       const rpcUrl = clusterApiUrl(network);
@@ -50,8 +50,6 @@ function App() {
       console.log(err);
     }
   })();
-
-
 
   return (
     <div class="main">

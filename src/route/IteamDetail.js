@@ -214,7 +214,7 @@ const IteamDetail = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <a class="d-block btn btn-bordered-white mt-4" href="wallet-connect.html">Place a Bid</a>
+                                <a class="d-block btn btn-bordered-white mt-4" href={`/mint?${tokAddr}`}>Place a Bid</a>
                             </div>
                         </div>
                     </div>
